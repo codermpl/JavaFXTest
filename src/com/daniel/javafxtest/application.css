@@ -1,0 +1,5 @@
+.grid-node {
+    -fx-background-color: skyblue; /* set background to skyblue */
+    -fx-border-color: black; /* set border to red*/
+    -fx-border-width: 3; /* border width 3px */
+}

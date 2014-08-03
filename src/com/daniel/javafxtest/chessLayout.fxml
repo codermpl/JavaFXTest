@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.Group?>
+
+
+<BorderPane fx:controller="com.daniel.javafxtest.ChessController" 
+	xmlns:fx="http://javafx.com/fxml">
+	<center>
+		<GridPane>
+		</GridPane>
+	</center>
+	<bottom>
+		<HBox alignment="CENTER">
+			<Button text="Reset"  
+	        	onAction="#handleResetButtonAction"/>
+		</HBox>
+	</bottom>
+	<!-- TODO Add Nodes -->
+</BorderPane>
+
