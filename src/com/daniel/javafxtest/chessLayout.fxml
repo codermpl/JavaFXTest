@@ -11,7 +11,7 @@
 <BorderPane fx:controller="com.daniel.javafxtest.ChessController" 
 	xmlns:fx="http://javafx.com/fxml">
 	<center>
-		<GridPane>
+		<GridPane fx:id="grid">
 		</GridPane>
 	</center>
 	<bottom>

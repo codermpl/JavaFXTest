@@ -10,17 +10,23 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.event.*;
 
 public class FxmlView extends Application {
 
 	@Override
 	public void start(Stage stage) {
-	    try{   
+	    try{
+	    	KnightsTourModel tour = new KnightsTourModel();
+	    	Image image1 = new Image("file:Knight_3.svg", true);
 		Parent root = FXMLLoader.load(getClass().getResource("chessLayout.fxml"));
 	        Scene scene = new Scene(root, 300, 275);
 	        BorderPane p = (BorderPane)scene.getRoot();
@@ -52,6 +58,7 @@ public class FxmlView extends Application {
 					grid.add(helpIcon, i, j);
 				}
 			}
+
 	        stage.setTitle("Knight's Tour");
 	        stage.setScene(scene);
 	        stage.show();
