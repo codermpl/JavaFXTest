@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -26,9 +27,9 @@ public class FxmlView extends Application {
 	public void start(Stage stage) {
 	    try{
 	    	KnightsTourModel tour = new KnightsTourModel();
-	    	Image image1 = new Image("file:Knight_3.svg", true);
-		Parent root = FXMLLoader.load(getClass().getResource("chessLayout.fxml"));
-	        Scene scene = new Scene(root, 300, 275);
+	    	Parent root = FXMLLoader.load(getClass().getResource("chessLayout.fxml"));
+	        System.out.println(System.getProperty("user.dir"));
+	    	Scene scene = new Scene(root, 300, 275);
 	        BorderPane p = (BorderPane)scene.getRoot();
 	        System.out.println(p.toString());
 	        GridPane grid = (GridPane)p.getChildrenUnmodifiable().get(0);
@@ -58,7 +59,15 @@ public class FxmlView extends Application {
 					grid.add(helpIcon, i, j);
 				}
 			}
+	    	Image image1 = new Image("file:Knight_3.gif");
 
+	    	System.out.println(image1.errorProperty().getValue());
+	    	ImageView iv = new ImageView();
+	    	iv.fitWidthProperty().bind(rectsAreaSize.divide(8).subtract(5));
+	    	iv.fitHeightProperty().bind(rectsAreaSize.divide(8).subtract(5));
+
+	    	iv.setImage(image1);
+	    	grid.add(iv, 0, 0);
 	        stage.setTitle("Knight's Tour");
 	        stage.setScene(scene);
 	        stage.show();
