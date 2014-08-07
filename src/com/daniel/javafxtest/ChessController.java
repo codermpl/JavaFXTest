@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class ChessController implements Initializable{
-
+ 
 	@FXML public GridPane grid;
 	
 	@Override public void initialize(URL url, ResourceBundle rb) {
