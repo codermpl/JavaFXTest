@@ -6,18 +6,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
 
 
 <BorderPane fx:controller="com.daniel.javafxtest.ChessController" 
 	xmlns:fx="http://javafx.com/fxml">
 	<center>
 		<GridPane fx:id="grid">
+			<ImageView fx:id="knightImage" disable="false" fitHeight="20.0" fitWidth="20.0"
+				 GridPane.columnIndex="0" GridPane.rowIndex="0">
+	        	<Image url="file:Knight_3.gif"/>
+	        </ImageView>
 		</GridPane>
 	</center>
 	<bottom>
 		<HBox alignment="CENTER">
 			<Button text="Reset"  
 	        	onAction="#handleResetButtonAction"/>
+
 		</HBox>
 	</bottom>
 	<!-- TODO Add Nodes -->

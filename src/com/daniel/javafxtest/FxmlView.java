@@ -23,13 +23,22 @@ import javafx.event.*;
 
 public class FxmlView extends Application {
 
+	KnightsTourModel tour;
+	
 	@Override
 	public void start(Stage stage) {
 	    try{
-	    	KnightsTourModel tour = new KnightsTourModel();
-	    	Parent root = FXMLLoader.load(getClass().getResource("chessLayout.fxml"));
-	        System.out.println(System.getProperty("user.dir"));
-	    	Scene scene = new Scene(root, 300, 275);
+	    	tour = new KnightsTourModel();
+	    	//Parent root = FXMLLoader.load(getClass().getResource("chessLayout.fxml"));
+	    	
+	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("chessLayout.fxml"));
+	    	Scene scene = new Scene((Parent)fxmlLoader.load(), 300, 275);
+	    	ChessController controller = fxmlLoader.getController();
+	    	controller.setTour(tour);
+	    	//System.out.println("startingGroup = " + startingGroup);
+	    	
+	    	System.out.println(System.getProperty("user.dir"));
+
 	        BorderPane p = (BorderPane)scene.getRoot();
 	        System.out.println(p.toString());
 	        GridPane grid = (GridPane)p.getChildrenUnmodifiable().get(0);
@@ -57,6 +66,7 @@ public class FxmlView extends Application {
 				helpIcon.widthProperty().bind(rectsAreaSize.divide(8).subtract(5));
 				helpIcon.heightProperty().bind(rectsAreaSize.divide(8).subtract(5));
 					grid.add(helpIcon, i, j);
+					helpIcon.toBack();
 				}
 			}
 	    	Image image1 = new Image("file:Knight_3.gif");
@@ -67,7 +77,8 @@ public class FxmlView extends Application {
 	    	iv.fitHeightProperty().bind(rectsAreaSize.divide(8).subtract(5));
 
 	    	iv.setImage(image1);
-	    	grid.add(iv, 0, 0);
+	    	//grid.add(iv, 0, 0);
+	    	controller.addSquareEvents();
 	        stage.setTitle("Knight's Tour");
 	        stage.setScene(scene);
 	        stage.show();

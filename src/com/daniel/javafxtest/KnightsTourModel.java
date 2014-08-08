@@ -34,9 +34,9 @@ public class KnightsTourModel {
 				sq.addEdge(this.getSquare(i - 1, j + 2));
 				sq.addEdge(this.getSquare(i - 1, j - 2));
 				sq.addEdge(this.getSquare(i + 2, j + 1));
-				sq.addEdge(this.getSquare(i + 2, j - 2));
+				sq.addEdge(this.getSquare(i + 2, j - 1));
 				sq.addEdge(this.getSquare(i - 2, j + 1));
-				sq.addEdge(this.getSquare(i - 1, j - 1));
+				sq.addEdge(this.getSquare(i - 2, j - 1));
 			}
 		}
 	}

@@ -22,6 +22,10 @@ public class Square {
 		return;
 	}
 	
+	public List<Square> getAdjacentNodes(){
+		return adjList;
+	}
+	
 	public String toString(){
 		return x + "," + y;
 	}
