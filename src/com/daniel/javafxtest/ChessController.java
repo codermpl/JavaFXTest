@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -21,25 +23,20 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeType;
 
 public class ChessController implements Initializable{
  
 	@FXML public GridPane grid;
 	@FXML public ImageView knightImage;
 	private KnightsTourModel tour;
-	List<Circle> adjCircles;
-	
+	private List<Circle> adjCircles;
+	private NumberBinding squareSize;
+
 	@Override public void initialize(URL url, ResourceBundle rb) {
         System.out.println("You are initializing!");
-        
-        adjCircles = new ArrayList<Circle>();
-        for(int i=0; i<8;i++){
-        	Circle circle = new Circle(10,Color.GREEN);
-        	circle.setVisible(false);
-        	adjCircles.add(circle);
-        	grid.add(circle, 1, 1);
-        }
 //		grid.addEventFilter(MouseEvent.MOUSE_CLICKED, squareHandle);
+        //grid.setStyle("-fx-border: 2px solid; -fx-border-color: red;");
 
 /*		EventHandler filter = new EventHandler<InputEvent>() {
 		    public void handle(InputEvent event) {
@@ -56,7 +53,33 @@ public class ChessController implements Initializable{
 		};
 		grid.addEventFilter(MouseEvent.MOUSE_CLICKED, filter);
     */
-    }
+	}
+	protected void createMoveGraphics(){
+        adjCircles = new ArrayList<Circle>();
+        for(int i=0; i<8;i++){
+        	Circle circle = new Circle(10,Color.LIGHTGREEN);
+        	circle.setVisible(false);
+        	adjCircles.add(circle);        
+        	circle.radiusProperty().bind( squareSize.divide(3));
+        	circle.setStrokeWidth(2);
+        	circle.setStrokeType(StrokeType.INSIDE);
+        	circle.setStroke(Color.BLACK);
+        	grid.add(circle, 1, 1);
+        }
+
+	}
+	protected void bindSquareSize(NumberBinding bindVal){
+        System.out.println(bindVal);
+        squareSize = bindVal;
+        setKnightBinding();
+    
+	}
+	
+	protected void setKnightBinding(){
+    	knightImage.fitWidthProperty().bind(squareSize);
+    	knightImage.fitHeightProperty().bind(squareSize);
+	}
+	
     public void handleResetButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
     }
@@ -92,7 +115,7 @@ public class ChessController implements Initializable{
 	        //Move knight
 
 		    	GridPane.setConstraints(knightImage, column, row);
-		    	//GridPane.setConstraints(circle1, 2,2);
+
 	        event.consume();
 	    }
 	};

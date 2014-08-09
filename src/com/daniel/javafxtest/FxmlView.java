@@ -60,7 +60,8 @@ public class FxmlView extends Application {
 
 					}
 					else{
-						   helpIcon.setFill(Color.BROWN);
+						   //helpIcon.setFill(Color.BROWN);
+						   helpIcon.setFill(Color.BLACK);
 					}
 
 				helpIcon.widthProperty().bind(rectsAreaSize.divide(8).subtract(5));
@@ -73,12 +74,14 @@ public class FxmlView extends Application {
 
 	    	System.out.println(image1.errorProperty().getValue());
 	    	ImageView iv = new ImageView();
-	    	iv.fitWidthProperty().bind(rectsAreaSize.divide(8).subtract(5));
-	    	iv.fitHeightProperty().bind(rectsAreaSize.divide(8).subtract(5));
+	    	//iv.fitWidthProperty().bind(rectsAreaSize.divide(8).subtract(5));
+	    	//iv.fitHeightProperty().bind(rectsAreaSize.divide(8).subtract(5));
 
-	    	iv.setImage(image1);
+	    	//iv.setImage(image1);
 	    	//grid.add(iv, 0, 0);
 	    	controller.addSquareEvents();
+	    	controller.bindSquareSize(rectsAreaSize.divide(8).subtract(5));
+	    	controller.createMoveGraphics();
 	        stage.setTitle("Knight's Tour");
 	        stage.setScene(scene);
 	        stage.show();
