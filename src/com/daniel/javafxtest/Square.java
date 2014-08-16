@@ -8,11 +8,13 @@ public class Square {
 	int x;
 	int y;
 	List<Square> adjList;
+	private boolean visited;
 	
 	public Square(int x, int y){
 		this.x = x;
 		this.y = y;
 		adjList = new ArrayList<Square>();
+		visited = false;
 	}
 	
 	public void addEdge(Square sq){
@@ -29,6 +31,20 @@ public class Square {
 	public String toString(){
 		return x + "," + y;
 	}
-
+	public boolean isVisited(){
+		return visited;
+	}
+	public void setVisited(boolean visited){
+		this.visited = visited;
+	}
+	public boolean isAdjacent(Square sq){
+		return adjList.contains(sq);
+	}
+	public boolean hasMove(){
+		for(Square sq : adjList){
+			if(!sq.isVisited()){return true;}
+		}
+		return false;
+	}
 	
 }

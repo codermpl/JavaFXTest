@@ -28,7 +28,7 @@ public class FxmlView extends Application {
 	@Override
 	public void start(Stage stage) {
 	    try{
-	    	tour = new KnightsTourModel();
+	    	tour = new KnightsTourModel(6,6);
 	    	//Parent root = FXMLLoader.load(getClass().getResource("chessLayout.fxml"));
 	    	
 	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("chessLayout.fxml"));
@@ -51,8 +51,8 @@ public class FxmlView extends Application {
 			int i,j;
 		    NumberBinding rectsAreaSize = Bindings.min(scene.heightProperty(), scene.widthProperty());
 
-			for(i=0;i<8;i++){
-				for(j=0;j<8;j++){
+			for(i=0;i<tour.getLength();i++){
+				for(j=0;j<tour.getWidth();j++){
 
 					Rectangle helpIcon = new Rectangle(30.0, 30.0);
 					if(i % 2 == 0 && j % 2 == 0 || i % 2 == 1 && j % 2 == 1){
@@ -64,8 +64,8 @@ public class FxmlView extends Application {
 						   helpIcon.setFill(Color.BLACK);
 					}
 
-				helpIcon.widthProperty().bind(rectsAreaSize.divide(8).subtract(5));
-				helpIcon.heightProperty().bind(rectsAreaSize.divide(8).subtract(5));
+				helpIcon.widthProperty().bind(rectsAreaSize.divide(tour.getLength()).subtract(5));
+				helpIcon.heightProperty().bind(rectsAreaSize.divide(tour.getWidth()).subtract(5));
 					grid.add(helpIcon, i, j);
 					helpIcon.toBack();
 				}
@@ -80,7 +80,7 @@ public class FxmlView extends Application {
 	    	//iv.setImage(image1);
 	    	//grid.add(iv, 0, 0);
 	    	controller.addSquareEvents();
-	    	controller.bindSquareSize(rectsAreaSize.divide(8).subtract(5));
+	    	controller.bindSquareSize(rectsAreaSize.divide(tour.getWidth()).subtract(5));
 	    	controller.createMoveGraphics();
 	        stage.setTitle("Knight's Tour");
 	        stage.setScene(scene);
