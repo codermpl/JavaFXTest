@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.event.ActionEvent;
@@ -40,6 +43,8 @@ public class ChessController implements Initializable{
 
 	@Override public void initialize(URL url, ResourceBundle rb) {
         System.out.println("You are initializing!");
+        Logger logger = LoggerFactory.getLogger("com.daniel.javafxtest.ChessController");
+        logger.debug("initializing");
 //		grid.addEventFilter(MouseEvent.MOUSE_CLICKED, squareHandle);
         //grid.setStyle("-fx-border: 2px solid; -fx-border-color: red;");
 
